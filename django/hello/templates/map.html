@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+{% block title %}Leaflet sample{% endblock %}
+
+{% block content %}
+
+
+      <p></p>
+
+
+      <div id = "map" class="map"></div>
+
+
+      <script>
+         // Creating map options
+         var mapOptions = {
+            center: [48.779433, 31.16558],
+            zoom: 6
+         }
+         // Creating a map object
+         var map = new L.map('map', mapOptions);
+         
+         // Creating a Layer object
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+         
+         // Adding layer to the map
+         map.addLayer(layer);
+
+
+         // StyLE OF POINTS on THE MAP!!!
+
+         var geojsonStyle = {
+         	radius: 6,
+         	fillColor: "#1E90FF",
+         	color: "#000",
+         	weight:1,
+         	opacity: 1,
+         	fillOpacity: 0.7,
+         };
+
+
+         var wfs_url =
+         	"http://localhost:8080/geoserver/upngnss/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=upngnss:UPN_GNSS_project100&outputFormat=application/json";
+
+         	$.getJSON(wfs_url).then((res) => {
+         		var layer = L.geoJson(res, {
+                  pointToLayer: function (f, l) {
+                     return L.circleMarker(l, geojsonStyle);     //Connect to point`s styles!!!
+                  },
+         			onEachFeature: function (f, l) {
+                      //DATA IN POPUP FROM Database!!!
+         				l.bindPopup("<b>Number:</b>"+f.properties.number+"<br> <b>Name_UA:</b>"+f.properties.nameua+"<br> <b>Name_EN:</b>"+f.properties.nameen+"<br> <b>КодКОАТУУ:</b>"+f.properties.coatuu_code+"<br> <b>Статус за адміністративним поділом:</b>"+f.properties.status_np_za_admin_podil+"<br> <b>Норвезький проект:</b>"+f.properties.norway_project+"<br> <b>Grounding:</b>"+f.properties.grounding+"<br> Site_report:"+f.properties.site_repor+"<br> Cabinet:"+f.properties.cabinet+"<br> Statusid:"+f.properties.statusid+"<br> <b>DGK:</b>"+f.properties.dgk+"<br> <b>DGK_contact:</b>"+f.properties.dgk_contac+"<br> <b>Agreement:</b>"+f.properties.agreement+"<br> <b>Primary_contact:</b>"+f.properties.primary_co+"<br> <b>Rigc_ready:</b>"+f.properties.rigc_ready+"<br> <b>Installation_status:</b>"+f.properties.installati+"<br> <b>Notes:</b>"+f.properties.notes)
+                     // l.on("mouseover", function(e){
+                     //    l.setStyle(geojsonStyle_hover)
+                     // });     
+         			}
+         		}).addTo(map);	
+         	});
+
+
+   //       var wmsLayer = L.tileLayer.wms('http://localhost:8080/geoserver/upngnss/wms', {
+			//     layers: 'upngnss:UPN_GNSS_project100'
+			// }).addTo(map);
+
+         var scale = L.control.scale(); // Creating scale control
+         scale.addTo(map); // Adding scale control to the map
+
+
+
+      </script>
+
+
+{% endblock %}

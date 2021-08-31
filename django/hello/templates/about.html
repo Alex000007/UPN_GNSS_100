@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+		<h1>Ukraine</h1>
+			<div>
+				<p align="justify"><img src="/static/images/2.jpg" id="img" alt="The best country ever!!!" style="margin: 10x 100px 100px 100px;">
+				Ukraine (Ukrainian: Україна, romanized: Ukraina, pronounced [ʊkrɐˈjinɐ] (About this soundlisten)) is a country in Eastern Europe. It is the second-largest country in Europe after Russia, which it borders to the east and north-east. Ukraine also shares borders with Belarus to the north; Poland, Slovakia, and Hungary to the west; Romania and Moldova to the south; and has a coastline along the Sea of Azov and the Black Sea. It spans an area of 603,628 km2 (233,062 sq mi), with a population of 41.4 million, and is the eighth-most populous country in Europe. The nation's capital and largest city is Kyiv.
+				</p>
+				<p align="justify">
+				The territory of modern Ukraine has been inhabited since 32,000 BC. During the Middle Ages, the area was a key centre of East Slavic culture, with the powerful state of Kievan Rus' forming the basis of Ukrainian identity. Following its fragmentation into several principalities in the 13th century and the devastation created by the Mongol invasion, the territorial unity collapsed and the area was contested, ruled, and divided by a variety of powers, including the Polish–Lithuanian Commonwealth, Austria-Hungary, the Ottoman Empire, and Russia. A Cossack republic emerged and prospered during the 17th and 18th centuries, but its territory was eventually split between Poland and the Russian Empire. In the aftermath of the Russian Revolution, a Ukrainian national movement for self-determination emerged, and the internationally recognized Ukrainian People's Republic was declared on 23 June 1917. After World War II, the western part of Ukraine merged into the Ukrainian Soviet Socialist Republic, and the whole country became a part of the Soviet Union. Ukraine gained its independence in 1991, following the dissolution of the Soviet Union.
+				</p>
+			</div>
+
+			<button class="accordion">Etymology and orthography</button>
+			<div class="panel">
+				<p>There are different hypotheses as to the etymology of the name Ukraine. According to the older widespread hypothesis, it means "borderland", while some more recent linguistic studies claim a different meaning: "homeland" or "region, country".
+
+				"The Ukraine" used to be a frequently used form in English throughout the 20th century, but since the Declaration of Independence of Ukraine in 1991, "the Ukraine" has become less common in the English-speaking world, and style-guides warn against its use in professional writing. According to U.S. ambassador William Taylor, "the Ukraine" now implies disregard for the country's sovereignty. The official Ukrainian position is that the usage of "'the Ukraine' is incorrect both grammatically and politically."
+				</p>
+			</div>
+
+
+
+			<script>
+				var acc = document.getElementsByClassName("accordion");
+				var i;
+
+				for (i = 0; i < acc.length; i++) {
+				    acc[i].addEventListener("click", function() {
+				        this.classList.toggle("active");
+				        var panel = this.nextElementSibling;
+				        if (panel.style.display === "block") {
+				            panel.style.display = "none";
+				        } else {
+				            panel.style.display = "block";
+				        }
+				    });
+				}
+			</script>
+
+
+			<script>
+				var acc = document.getElementsByClassName("accordion");
+				var i;
+
+				for (i = 0; i < acc.length; i++) {
+				  acc[i].addEventListener("click", function() {
+				    this.classList.toggle("active");
+				    var panel = this.nextElementSibling;
+				    if (panel.style.maxHeight){
+				      panel.style.maxHeight = null;
+				    } else {
+				      panel.style.maxHeight = panel.scrollHeight + "px";
+				    }
+				  });
+				}
+			</script>
+
+
+{% endblock %}

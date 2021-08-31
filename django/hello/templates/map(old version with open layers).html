@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
+    <title>Map</title>
+  </head>
+  <body>
+    <div class="topnav">      <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
+        <img class="img_logo" src="/static/images/6.jpg"><a href="/home">Home</a>
+        <a class="active" href="/map">Map</a>
+        <a href="/admin">ADMIN</a>
+        <a href="/contact">Contact</a>
+        <a href="/about">About</a>
+        <!-- <p>{% now "Y" %}</p> -->    <!-- year -->
+        <h2 class="date01"> {% now "j F Y"%} </h2> <!-- day, month(full), year -->
+        <form action="{% url 'search_results' %}" method="get">
+          <input name="q" type="text" placeholder="Search...">
+          <button type="submit"></button>
+        </form>
+      </div>
+
+    <p></p>
+    
+    <div id="map" class="map"></div>
+    <div class="popup js-popup">
+      <div class="popup__background" onClick="hidePopup()"></div>
+      <div class="popup__container">
+        <h3 class="popup__title">Інформація про станцію</h3>
+        <p class="popup__containerIframe js-popup__containerIframe"></p>
+        <div class="popup__containerButton">
+          <button class="popup__button" onClick="hidePopup()">Okay</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const showPopup = () => {
+        const popup = document.querySelector('.js-popup');
+
+        if (!popup) return;
+
+        popup.style.transform = 'scale(1)';
+        popup.style.opacity = '1';
+        popup.style.display = 'flex';
+      };
+
+      const hidePopup = () => {
+        const popup = document.querySelector('.js-popup');
+
+        if (!popup) return;
+
+        popup.style.transform = 'scale(0)';
+        popup.style.opacity = '0';
+        popup.style.display = 'none';
+      };
+      
+      var upngnss = new ol.layer.Image({
+      source: new ol.source.ImageWMS({
+        url:'http://localhost:8080/geoserver/upngnss/wms',
+        params:{'LAYERS':'upngnss:UPN_GNSS_project100'},
+        serverType:'geoserver',
+      })
+     });
+
+     var map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        }),
+        upngnss,
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([31.41, 48.82]),
+        zoom: 6
+      })
+    });
+
+
+     map.on('singleclick', function(evt) {
+        const view = map.getView();
+        const viewResolution = view.getResolution();
+        const source = upngnss.getSource();
+        const url = source.getFeatureInfoUrl(
+          evt.coordinate, 
+          viewResolution, 
+          view.getProjection(),
+          {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+        );
+
+        if (!url) return;
+
+        fetch(url)
+        .then(response => response.text())
+        .then(response => {
+          if (response.search('class="featureInfo') === -1) return;
+
+          showPopup();
+          document.querySelector('.js-popup__containerIframe').innerHTML = '<iframe class="popup__iframe" seamless src="' + url + '"></iframe>';
+        })
+      });
+                            // ALL Below DO NOT WORK on this version!!!
+
+                             // map.on('pointermove', function (evt) {
+                             //    if (evt.dragging) {
+                             //      return;
+                             //    }
+                             //    const pixel = map.getEventPixel(evt.originalEvent);
+                             //    const hit = map.forEachLayerAtPixel(pixel, function (feature, layer) {
+                             //      if (layer == upngnss) {
+                             //      return feature;
+                             //    }});
+                             //    map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+                             //  });
+
+
+
+                            //  map.on("pointermove", function (evt) {
+                            //     var hit = this.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+                            //         return true;
+                            //     }); 
+                            //     if (hit) {
+                            //         this.getTargetElement().style.cursor = 'pointer';
+                            //     } else {
+                            //         this.getTargetElement().style.cursor = '';
+                            //     }
+                            // });
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,136 @@
+body{font-family: Verdana; background: #E0FFFF;}
+h1{color: navy; text-align: center;}
+#img{width: 500px; border: 8px solid #008080; float: right; margin: 0px 0px 0px 15px;}
+
+
+
+.date01{text-align: center; font-size: 17px; float: left;}
+.date {display: block; margin-right: auto; margin-left: auto; width: 20px;}
+.date1 {width: 50px; display: block; margin-right: auto; margin-left: auto; }
+
+/*LOGO!!!*/
+
+.img_logo{
+	width: 50px;
+	height: 50px;
+	border: 1px solid #696969;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+
+/*add a background color to the top navigation*/
+.topnav {
+	background-color: #ADD8E6;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 30px;
+}
+
+/*Style the links inside the navigation bar*/
+.topnav a{
+	float: left;
+	color: #000000;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+/*Change the color of links on hover*/
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active{
+	background-color: #4CAF50;
+	color: white;
+}
+
+/* Style the search box inside the navigation bar */
+
+/*.topnav input[type=text]{
+float: right;
+padding: 6px;
+border: none;
+margin-top: 8px;
+margin-right: 16px;
+margin-bottom: 8px;
+font-size: 17px;
+
+}*/
+
+
+/*SEARCH FORM!!!*/
+
+* {box-sizing: border-box;}
+.form {
+  width: auto;
+  float: right;
+  margin-right: 30px;
+  padding-top: 4px;
+}
+.form__input {
+  width: 250px;
+  height: 42px;
+  padding-left: 15px;
+  border-radius: 42px;
+  border: 2px solid #324b4e;
+  background: #F9F0DA;
+  outline: none;
+  position: relative;
+  transition: .3s linear;
+}
+.form__input:focus {
+  width: 300px;
+}
+
+
+
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion{
+	font-size: 15px;
+	color: black;
+	background-color: #708090;
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	text-align: justify;
+	border: none;
+	outline: none;
+	transition: 0.4s;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.active, .accordion:hover{
+	background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+
+.panel{
+	padding: 0 18px;
+	background-color: white;
+	max-height: 0;
+	display: none;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+}
+
+
+.accordion:after{
+	content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+.accordion:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}

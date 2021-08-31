@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+	<!-- V.1.0 -->
+
+	<!-- <h1>Registration</h1>
+	<form method="post">
+		{% csrf_token %}
+		User Name: <input type="text" name="username"><br>
+		Email: <input type="email" name="email"><br>
+		Password: <input type="password" name="password"><br>
+		Confirm password: <input type="password" name="password2"><br>
+
+		<input type="submit" value="Register">
+	</form> -->
+
+
+	<!-- V.2.0 -->
+
+	<h1>Create an account</h1>
+    <h3>Please, sign up using the following form:</h3>
+    <form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Create my account"></p>
+    </form>
+		
+{% endblock %}

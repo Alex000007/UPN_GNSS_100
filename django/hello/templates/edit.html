@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+
+{% block title %}UPN GNSS PROGECT{% endblock %}
+
+{% block content %}
+
+	<form method="POST">
+		{% csrf_token %}
+		<p>
+			<label>Region</label><br>
+			<input type="text" name="region" value="{{UpnGnss.region}}">
+		</p>
+		<p>
+			<label>Name_UA</label><br>
+			<input type="text" name="nameua" value="{{UpnGnss.nameua}}">
+		</p>
+		<p>
+			<label>Name_EN</label><br>
+			<input type="text" name="nameen" value="{{UpnGnss.nameen}}">
+		</p>
+		<p>
+			<label>КодКОАТУУ</label><br>
+			<input type="text" name="coatuu_code" value="{{UpnGnss.coatuu_code}}">
+		</p>
+		<p>
+			<label>Y</label><br>
+			<input type="text" name="y" value="{{UpnGnss.y}}">
+		</p>
+		<p>
+			<label>X</label><br>
+			<input type="text" name="x" value="{{UpnGnss.x}}">
+		</p>
+		<p>
+			<label>Статус_нп_за_адмін_поділом</label><br>
+			<input type="text" size="27" name="status_np_za_admin_podil" value="{{UpnGnss.status_np_za_admin_podil}}">
+		</p>
+		<p>
+			<label>DistrictCenterOld</label><br>
+			<input type="text" name="districtce" value="{{UpnGnss.districtce}}">
+		</p>
+		<p>
+			<label>meteo</label><br>
+			<input type="text" name="meteo" value="{{UpnGnss.meteo}}">
+		</p>
+		<p>
+			<label>status</label><br>
+			<input type="text" name="status" value="{{UpnGnss.status}}">
+		</p>
+		<p>
+			<label>Норвезький_проект</label><br>
+			<input type="text" name="norway_project" value="{{UpnGnss.norway_project}}">
+		</p>
+		<p>
+			<label>grounding</label><br>
+			<input type="text" name="grounding" value="{{UpnGnss.grounding}}">
+		</p>
+		<p>
+			<label>site_report</label><br>
+			<input type="text" name="site_repor" value="{{UpnGnss.site_repor}}">
+		</p>
+		<p>
+			<label>reconaissance_report</label><br>
+			<input type="text" name="reconaissa" value="{{UpnGnss.reconaissa}}">
+		</p>
+		<p>
+			<label>cabinet</label><br>
+			<input type="text" name="cabinet" value="{{UpnGnss.cabinet}}">
+		</p>
+		<p>
+			<label>statusid</label><br>
+			<input type="text" name="statusid" value="{{UpnGnss.statusid}}">
+		</p>
+		<p>
+			<label>dgk</label><br>
+			<input type="text" name="dgk" value="{{UpnGnss.dgk}}">
+		</p>
+		<p>
+			<label>dgk_contact</label><br>
+			<textarea class="edit" type="text" name="dgk_contac" value="{{UpnGnss.dgk_contac}}">{{UpnGnss.dgk_contac}}</textarea>
+		</p>
+		<p>
+			<label>agreement</label><br>
+			<input type="text" name="agreement" value="{{UpnGnss.agreement}}">
+		</p>
+		<p>
+			<label>primary_contact</label><br>
+			<textarea class="edit" type="text" name="primary_co" value="{{UpnGnss.primary_co}}">{{UpnGnss.primary_co}}</textarea>
+		</p>
+		<p>
+			<label>rigc_ready</label><br>
+			<input type="text" name="rigc_ready" value="{{UpnGnss.rigc_ready}}">
+		</p>
+		<p>
+			<label>sitechange</label><br>
+			<input type="text" name="sitechange" value="{{UpnGnss.sitechange}}">
+		</p>
+		<p>
+			<label>installationstatus</label><br>
+			<input type="text" name="installati" value="{{UpnGnss.installati}}">
+		</p>
+		<p>
+			<label>NOTES</label><br>
+			<textarea class="edit" type="text" name="notes" value="{{UpnGnss.notes}}">{{UpnGnss.notes}}</textarea>
+		</p>
+		<input class="edit_button_save" type="submit" value="Save"> <input type="button" class="edit_button_cancel" onclick="history.back();" value="Cancel">
+	</form>
+		
+
+{% endblock %}
